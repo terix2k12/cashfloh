@@ -1,0 +1,13 @@
+[project]
+name = "cashfloh"
+version = "0.1.0"
+description = "A processing tool for accounting information of german finance institutions."
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "black>=25.1.0",
+    "cryptography>=45.0.7",
+    "flake8>=7.3.0",
+    "pypdf>=6.0.0",
+    "pytest>=8.4.2",
+]
