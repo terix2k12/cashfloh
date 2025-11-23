@@ -11,6 +11,7 @@ class MainCategory:
 class SubCategory:
     id: int
     name: str
+    parent: int
 
 class Categories:
     main_categories: dict[int, MainCategory] = {}
@@ -25,14 +26,15 @@ class CategoryService:
                 continue
             csv = line.split(";")
             assert len(csv) == 3
-            id = int(csv[0])
+            cat_id = int(csv[0])
             sub_id = int(csv[1])
             name = csv[2]
-            if id > 0:
-                cat.main_categories[id] = MainCategory(id, name)
-            if sub_id > 0:
-                cat.sub_categories[sub_id] = SubCategory(sub_id, name)
-
+            if sub_id == 0:
+                cat.main_categories[cat_id] = MainCategory(cat_id, name)
+                assert cat_id > 0
+            else:
+                assert cat_id in cat.main_categories
+                cat.sub_categories[sub_id] = SubCategory(sub_id, name, cat_id)
         return cat
 
     def fromFile(self, path: str):

@@ -1,7 +1,7 @@
 from app.rules.categories import CategoryService
 
 
-def test_load_default():
+def test_load_default_categories():
     service = CategoryService()
     categories = service.fromFile("default.categories.csv")
     assert categories is not None

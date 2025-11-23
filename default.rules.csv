@@ -1,3 +1,5 @@
 # A sample default rule set
-# rule-id;keyword;action
-1;"ALDI";"ASSIGN.Groceries"
+# rule-id;debitor;summary;details;short;action
+1;"";"";"";"ALDI";"ASSIGN.Eating.Groceries"
+2;"";"";"";"Bike";"ASSIGN.Hobbies.Cycling"
+3;"";"";"";"chinese";"ASSIGN.Eating.Restaurant"
