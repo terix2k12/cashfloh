@@ -147,6 +147,7 @@ def saveJson(json_path, data):
         json.dump(data, f, indent=4)
     print("Written JSON file")
 
+
 def main(categories, rules, inputpath):
 
     text = pdf2text(pdf_path)
@@ -171,8 +172,8 @@ def main(categories, rules, inputpath):
 
 def parse_args():
     parser = argparse.ArgumentParser(prog="cashfloh")
-    parser.add_argument("categories", type=str, nargs='+')
-    parser.add_argument("rules", type=str, nargs='+')
+    parser.add_argument("categories", type=str, nargs="+")
+    parser.add_argument("rules", type=str, nargs="+")
     parser.add_argument("inputpath", type=str)
 
     return parser.parse_args()

@@ -1,0 +1,3 @@
+# A sample default rule set
+# rule-id;keyword;action
+1;"ALDI";"ASSIGN.Groceries"
