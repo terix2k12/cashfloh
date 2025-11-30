@@ -1,11 +1,14 @@
 import re
 
-from app.rules.categories import MainCategory, SubCategory
+from app.core.data import Account, AccountItem
+from app.rules.categories import MISSING
+from app.transformers.transformer import Transformer
 
 
-class VobaTransformer:
+class VobaTransformer(Transformer):
 
-    kontonr: str
+    name: str = "VobaTransformer"
+    kontonr: str = "xxxx"  # TODO
 
     def checkFilename(self, filename):
         pattern = (
@@ -13,7 +16,7 @@ class VobaTransformer:
         )
         return re.match(pattern, filename) is not None
 
-    def text2struc(self, txt) -> dict:
+    def txt2struc(self, txt) -> Account:
         text = txt.splitlines()
 
         konto = None
@@ -50,25 +53,12 @@ class VobaTransformer:
 
                 value = float(split[-2].replace(".", "").replace(",", "."))
 
-                main = MainCategory.MISSING
-                sub = SubCategory.MISSING
+                main = MISSING
+                sub = MISSING
 
-                item = {
-                    "date": day,
-                    "ktype": k_type,
-                    "debitor": debitor,
-                    "summary": summary,
-                    "main": main,
-                    "sub": sub,
-                    "value": value,
-                    "debit": debit,
-                    "short": summary,
-                }
+                item = AccountItem(
+                    day, k_type, debitor, summary, main, sub, value, debit, summary
+                )
                 data.append(item)
 
-        return {
-            "kontoauszug": konto,
-            "startSaldo": start,
-            "endSaldo": end,
-            "items": data,
-        }
+        return Account(konto, start, end, data)

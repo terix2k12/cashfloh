@@ -1,15 +1,19 @@
 import re
 
-from app.rules.categories import MainCategory, SubCategory
+from app.core.data import Account, AccountItem
+from app.rules.categories import MISSING
+from app.transformers.transformer import Transformer
 
 
-class DkbTransformer:
+class DkbTransformer(Transformer):
+
+    name: str = "DkbTransformer"
 
     def checkFilename(self, filename) -> bool:
         pattern = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
         return re.match(pattern, filename) is not None
 
-    def dkbtxt2struc(txt) -> dict:
+    def txt2struc(self, txt) -> Account:
         text = txt.splitlines()
 
         konto = None
@@ -53,8 +57,8 @@ class DkbTransformer:
                 split = text[i].split("/")
                 k_type = split[0][10:]
 
-            main = MainCategory.MISSING
-            sub = SubCategory.MISSING
+            main = MISSING
+            sub = MISSING
 
             if inState > 0 and text[i].startswith("  "):
                 # print(f"Leaving item {i} {text[i]}")
@@ -67,18 +71,18 @@ class DkbTransformer:
                 if value < 0:
                     value *= -1
 
-                item = {
-                    "date": day,
-                    "ktype": k_type,
-                    "debitor": debitor,
-                    "summary": summary1,
-                    "details": summary2,
-                    "main": main,
-                    "sub": sub,
-                    "value": value,
-                    "debit": debit,
-                    "short": summary3,
-                }
+                item = AccountItem(
+                    date=day,
+                    ktype=k_type,
+                    debitor=debitor,
+                    summary=summary1,
+                    # details= summary2, # TODO
+                    main=main,
+                    sub=sub,
+                    value=value,
+                    debit=debit,
+                    short=summary3,
+                )
                 data.append(item)
 
                 k_type = debitor = summary1 = summary2 = summary3 = ""
@@ -95,10 +99,10 @@ class DkbTransformer:
             if line == 4:
                 summary3 = text[i]
 
-        return {
-            "konto": "DKB Konto",
-            "kontoauszug": konto,
-            "startSaldo": start,
-            "endSaldo": end,
-            "items": data,
-        }
+        return Account(
+            # konto= "DKB Konto", # TODO
+            kontoauszug=konto,
+            startSaldo=start,
+            endSaldo=end,
+            items=data,
+        )
