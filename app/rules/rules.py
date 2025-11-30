@@ -20,7 +20,10 @@ class RulesService:
             if rule.action.startswith("ASSIGN"):
                 main_category = rule.action.split(".")[1]
                 sub_category = rule.action.split(".")[2]
-                if main_category not in main_categories or sub_category not in sub_categories:
+                if (
+                    main_category not in main_categories
+                    or sub_category not in sub_categories
+                ):
                     return False
         return True
 
