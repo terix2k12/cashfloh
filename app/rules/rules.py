@@ -35,11 +35,11 @@ class RulesService:
             csv = line.split(";")
             assert len(csv) == 6
             rule_id = int(csv[0])
-            debitor = csv[1]
+            debitor = csv[1].replace('"', "")
             summary = csv[2]
             details = csv[3]
-            short = csv[4]
-            action = csv[5]
+            short = csv[4].replace('"', "")
+            action = csv[5].replace('"', "")
             rules.append(Rule(rule_id, debitor, summary, details, short, action))
         return rules
 
