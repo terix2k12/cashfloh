@@ -10,8 +10,11 @@ class DkbTransformer(Transformer):
     name: str = "DkbTransformer"
 
     def checkFilename(self, filename) -> bool:
-        pattern = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
-        return re.match(pattern, filename) is not None
+        pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
+        pattern2 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{2}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
+        isP1 = re.match(pattern1, filename) is not None
+        isP2 = re.match(pattern2, filename) is not None
+        return isP1 or isP2
 
     def txt2struc(self, txt) -> Account:
         text = txt.splitlines()
@@ -100,7 +103,7 @@ class DkbTransformer(Transformer):
                 summary3 = text[i]
 
         return Account(
-            # konto= "DKB Konto", # TODO
+            konto= "DKB Konto", # TODO flex
             kontoauszug=konto,
             startSaldo=start,
             endSaldo=end,

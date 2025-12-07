@@ -30,16 +30,17 @@ class VobaTransformer(Transformer):
                 konto = text[i + 1]
 
             if not start and text[i] == "VorgangWert":
-                saldo = text[i + 1]
+                saldo = text[i + 1].strip()
                 # print(f"Startsaldo detected: {saldo}")
-                saldo = saldo.split(" ")[1]
+                saldo = saldo.split(" ")[0]
                 saldo = saldo.replace(".", "").replace(",", ".")
                 start = float(saldo)
                 print(f"Startsaldo detected: <{saldo}> --> <{start}>")
 
             if not end and "neuer Kontostand vom" in text[i]:
-                split = text[i].split(" ")
-                end = float(split[-2].replace(".", "").replace(",", "."))
+                split1 = text[i].split(" H")[0]
+                split = split1.split(" ")
+                end = float(split[-1].replace(".", "").replace(",", "."))
                 print(f"Endsaldo detected: <{text[i]}> --> <{end}>")
 
             if "PN:" in text[i]:
@@ -61,4 +62,4 @@ class VobaTransformer(Transformer):
                 )
                 data.append(item)
 
-        return Account(konto, start, end, data)
+        return Account("Voba Konto", konto, start, end, data) # TODO inject
