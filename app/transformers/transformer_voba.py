@@ -58,7 +58,7 @@ class VobaTransformer(Transformer):
                 sub = MISSING
 
                 item = AccountItem(
-                    day, k_type, debitor, summary, main, sub, value, debit, summary
+                    day, k_type, debitor, summary, main, sub, value, debit, summary, summary
                 )
                 data.append(item)
 

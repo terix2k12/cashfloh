@@ -85,6 +85,7 @@ class DkbTransformer(Transformer):
                     value=value,
                     debit=debit,
                     short=summary3,
+                    details=summary3
                 )
                 data.append(item)
 

@@ -12,6 +12,7 @@ class AccountItem:
     value: float  # value,
     debit: str  # debit,
     short: str  # summary,
+    details: str # summary,
 
     def printItem(self, c):
         main = str(self.main).split(".")[1].ljust(12, " ")
@@ -31,7 +32,8 @@ class AccountItem:
 
 @dataclasses.dataclass
 class Account:
-    kontoauszug: str
+    konto: str
+    kontoauszug: str#  = "kontoauszug" TODO
     startSaldo: float
     endSaldo: float
     items: list[AccountItem]
