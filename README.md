@@ -1,6 +1,6 @@
 # Cash-Floh App
 
-A processing tool for accounting information of german finance institutions.
+A processing tool for accounting data of german finance institutions.
 
 ## Development
 
@@ -44,3 +44,5 @@ cashfloh_venv/bin/uv run flake8 app
 - parsing rules configurable
 - auto typing linting
 - unittests
+- __main__ rename
+- switch to pydantic because it can handle nested json import

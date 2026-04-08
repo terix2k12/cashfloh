@@ -1,0 +1,8 @@
+{
+  "transformers": [
+    {
+      "type": "VobaTransformer",
+      "account": 112233
+    }
+  ]
+}

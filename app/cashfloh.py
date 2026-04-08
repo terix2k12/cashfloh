@@ -2,6 +2,7 @@
 import os
 
 from app.core.logic import assign
+from app.core.settings import SettingsService
 from app.core.writer import saveJson, struc2csv
 from app.rules.categories import CategoryService
 from app.rules.rules import RulesService
@@ -29,12 +30,13 @@ def handleFolder():
     # TODO
     pass
 
-def main(categories_path, rules_path, inputpath):
+def main(settings_path, categories_path, rules_path, inputpath):
 
     categories = CategoryService().fromFile(categories_path)
     rules = RulesService().fromFile(rules_path)
+    settings = SettingsService().fromFile(settings_path)
 
-    transformers = [DkbTransformer(), VobaTransformer()]
+    transformers = [DkbTransformer(settings.transformers), VobaTransformer(settings.transformers)]
 
     for dirpath, dnames, fnames in os.walk(inputpath):
         for f in fnames:

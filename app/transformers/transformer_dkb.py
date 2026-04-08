@@ -1,6 +1,8 @@
 import re
+from typing import List
 
 from app.core.data import Account, AccountItem
+from app.core.settings import TransformerSettings
 from app.rules.categories import MISSING
 from app.transformers.transformer import Transformer
 
@@ -8,6 +10,9 @@ from app.transformers.transformer import Transformer
 class DkbTransformer(Transformer):
 
     name: str = "DkbTransformer"
+
+    def __init__(self, settings: List[TransformerSettings]):
+        pass
 
     def checkFilename(self, filename) -> bool:
         pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"

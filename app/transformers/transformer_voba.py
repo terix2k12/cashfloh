@@ -1,6 +1,8 @@
 import re
+from typing import List
 
 from app.core.data import Account, AccountItem
+from app.core.settings import TransformerSettings
 from app.rules.categories import MISSING
 from app.transformers.transformer import Transformer
 
@@ -8,7 +10,12 @@ from app.transformers.transformer import Transformer
 class VobaTransformer(Transformer):
 
     name: str = "VobaTransformer"
-    kontonr: str = "xxxx"  # TODO
+    kontonr: str
+
+    def __init__(self, settings: List[TransformerSettings]):
+        config = list(filter(lambda p: p["type"] == self.name, settings))
+        assert len(config) == 1
+        self.kontonr = config[0]["account"]
 
     def checkFilename(self, filename):
         LENGTH_2025 = 14

@@ -16,6 +16,7 @@ test/data/
 # "Real" Categories & Rules
 terix2k12.categories.csv
 terix2k12.rules.csv
+terix2k12.settings.json
 .run/Local run with *.xml
 
 # IntelliJ IDE
