@@ -11,6 +11,8 @@ class VobaTransformer(Transformer):
     kontonr: str = "xxxx"  # TODO
 
     def checkFilename(self, filename):
+        LENGTH_2025 = 14
+        LENGTH_2026 = 17
         pattern = (
             r"^\d{9}_\d{4}_Nr\.\d{3}_Kontoauszug_vom_\d{4}\.\d{2}\.\d{2}_\d{14}\.pdf$"
         )
@@ -45,7 +47,7 @@ class VobaTransformer(Transformer):
 
             if "PN:" in text[i]:
                 split = text[i].replace("  ", " ").split(" ")
-                day = split[0]
+                day = split[0]+"2025" # TODO parse somehow
                 debit = split[-1]
                 k_type = split[2:-3]
 
