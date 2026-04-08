@@ -22,7 +22,7 @@ def struc2csv(csv_path, data: Account):
 
             if data.kontoauszug:
                 kontoauszug = data.kontoauszug.strip().split("/")
-                auszug = f"{kontoauszug[1]}-{kontoauszug[0]}"
+                auszug = f"{kontoauszug[1]}-{(int(kontoauszug[0])):02d}"
             else:
                 kontoauszug = "kontoauszug"
                 auszug = "auszug"
@@ -42,11 +42,11 @@ def struc2csv(csv_path, data: Account):
 
             saldo = "Haben" if item.debit == "H" else "Soll"
             debitor = str(item.debitor).ljust(60, ' ')
-            details = str(item.details).ljust(60, ' ')
-            sort = f"{auszug}-{str(c)}"
+            details = str(item.details).ljust(60, ' ').strip()
+            sort = f"{auszug}/{c:03d}"
 
             csvfile.write(
-                f";;{item.date};{auszug};{data.konto};{saldo};{value};{main};{sub};{details};{sort};{pruefsumme}\n"
+                f";;{item.date};{auszug};{data.konto};{saldo};{value};{main.strip()};{sub.strip()};{details.strip()};{sort};{pruefsumme}\n"
             )
             c += 1
 

@@ -3,7 +3,6 @@ import dataclasses
 
 @dataclasses.dataclass
 class Rule:
-    id: int
     debitor_keyword: str
     summary_keyword: str
     details_keyword: str
@@ -33,14 +32,13 @@ class RulesService:
             if line.startswith("#"):
                 continue
             csv = line.split(";")
-            assert len(csv) == 6
-            rule_id = int(csv[0])
-            debitor = csv[1].replace('"', "")
-            summary = csv[2]
-            details = csv[3]
-            short = csv[4].replace('"', "")
-            action = csv[5].replace('"', "")
-            rules.append(Rule(rule_id, debitor, summary, details, short, action))
+            assert len(csv) == 5
+            debitor = csv[0].replace('"', "")
+            summary = csv[1]
+            details = csv[2]
+            short = csv[3].replace('"', "")
+            action = csv[4].replace('"', "")
+            rules.append(Rule(debitor, summary, details, short, action))
         return rules
 
     def fromFile(self, path: str):
