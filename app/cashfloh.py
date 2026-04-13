@@ -15,11 +15,8 @@ def transform(transformer, categories, rules, f, path):
     text = transformer.pdf2text(path)
     # print(text)
     data = transformer.txt2struc(text)
-    ok = data.verifystruc()
-    if not ok:
-        data.printstruc()
-    else:
-        assign(categories, rules, data)
+    data.verifystruc()
+    assign(categories, rules, data)
     return data
 
 def handleFile():

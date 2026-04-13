@@ -3,20 +3,19 @@ import dataclasses
 
 @dataclasses.dataclass
 class AccountItem:
-    date: str  # day,
-    ktype: str  # k_type,
-    debitor: str  # debitor,
-    summary: str  # summary,
-    main: str  # main,
-    sub: str  # sub,
-    value: float  # value,
-    debit: str  # debit,
-    short: str  # summary,
-    details: str # summary,
+    date: str
+    debitor: str
+    debit: str
+    main_category: int
+    sub_category: int
+    value: float
+    texts: list[str]
+    pn: int
+    pn_text: str
 
     def printItem(self, c):
-        main = str(self.main).split(".")[1].ljust(12, " ")
-        sub = str(self.sub).split(".")[1].ljust(12, " ")
+        main = str(self.main_category).split(".")[1].ljust(12, " ")
+        sub = str(self.sub_category).split(".")[1].ljust(12, " ")
 
         print(f" {str(c).rjust(3, " ")}: {self.date}              {main} {sub}")
         print(f"                          <{self.ktype.ljust(60, ' ')}>  ")
@@ -32,8 +31,11 @@ class AccountItem:
 
 @dataclasses.dataclass
 class Account:
+    type: str
     konto: str
-    kontoauszug: str#  = "kontoauszug" TODO
+    description: str
+    account: str
+    auszug: str
     startSaldo: float
     endSaldo: float
     items: list[AccountItem]
@@ -59,7 +61,7 @@ class Account:
 
             return True
         else:
-            print(f"Verification failed, is {is_saldo} should be {self.endSaldo}")
+            raise RuntimeError(f"Verification failed, is {is_saldo} should be {self.endSaldo}")
             return False
 
     def printstruc(self):

@@ -11,8 +11,9 @@ def assign(categories, rules: list[Rule], input_data: Account):
                 if rule.debitor_keyword in item.debitor:
                     applyRule(item, rule)
             if rule.short_keyword is not "":
-                if rule.short_keyword in item.summary:
-                    applyRule(item, rule)
+                for text in item.texts:
+                    if rule.short_keyword in text:
+                        applyRule(item, rule)
         c += 1
     return input_data
 
@@ -21,8 +22,8 @@ def applyRule(item: AccountItem, rule):
     if rule.action.startswith('ASSIGN'):
         m = rule.action.split(".")[1]
         s = rule.action.split(".")[2]
-        item.main = m
-        item.sub = s
+        item.main_category = m
+        item.sub_category = s
     if rule.action.startswith('DETAILS'):
         item.details = rule.action.split("=")[1]
 

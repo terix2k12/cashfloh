@@ -12,16 +12,16 @@ def struc2csv(csv_path, data: Account):
         csvfile.write(headers)
         c = 1
         for item in data.items:
-            main = str(item.main).ljust(12, " ")
-            sub = str(item.sub).ljust(12, " ")
+            main = str(item.main_category).ljust(12, " ")
+            sub = str(item.sub_category).ljust(12, " ")
             if main.strip() == "MISSING" or sub.strip() == "MISSING":
                 main = "".ljust(12, " ")
                 sub = "".ljust(12, " ")
 
             value = f"{item.value:10.2f}".replace(".", ",").strip()
 
-            if data.kontoauszug:
-                kontoauszug = data.kontoauszug.strip().split("/")
+            if data.auszug:
+                kontoauszug = data.auszug.strip().split("/")
                 auszug = f"{kontoauszug[1]}-{(int(kontoauszug[0])):02d}"
             else:
                 kontoauszug = "kontoauszug"
@@ -42,7 +42,7 @@ def struc2csv(csv_path, data: Account):
 
             saldo = "Haben" if item.debit == "H" else "Soll"
             debitor = str(item.debitor).ljust(60, ' ')
-            details = str(item.details).ljust(60, ' ').strip()
+            details = str(";".join(item.texts)).ljust(60, ' ').strip()
             sort = f"{auszug}/{c:03d}"
 
             csvfile.write(
@@ -54,6 +54,6 @@ def struc2csv(csv_path, data: Account):
 
 
 def saveJson(json_path, data: Account):
-    with open(json_path, "w") as f:
+    with open(json_path, "w", encoding="utf-8") as f:
         json.dump(dataclasses.asdict(data), f, indent=4)
     print("Written JSON file")

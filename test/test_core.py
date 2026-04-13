@@ -18,8 +18,8 @@ def test_core():
                 ktype="a",
                 debitor="a",
                 summary="a",
-                main="Hobbies",
-                sub="a",
+                main_category="Hobbies",
+                sub_category="a",
                 value=123,
                 debit="a",
                 short="a",
@@ -29,8 +29,8 @@ def test_core():
                 ktype="a",
                 debitor="a",
                 summary="a",
-                main="a",
-                sub="a",
+                main_category="a",
+                sub_category="a",
                 value=123,
                 debit="a",
                 short="a",
@@ -40,8 +40,8 @@ def test_core():
                 ktype="a",
                 debitor="a",
                 summary="a",
-                main="a",
-                sub="a",
+                main_category="a",
+                sub_category="a",
                 value=123,
                 debit="a",
                 short="a",
@@ -51,4 +51,4 @@ def test_core():
     output_data = assign(categories, rules, input_data)
 
     assert output_data is not None
-    assert output_data.items[0].main == "Hobbies"
+    assert output_data.items[0].main_category == "Hobbies"
