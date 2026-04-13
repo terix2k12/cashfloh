@@ -35,11 +35,13 @@ cashfloh_venv/bin/uv run flake8 app
 ```
 
 # TODOS
-- apply for dkb too
 - interactive correction 
+- apply for dkb too
 - Replace Category/Subcategory ENUMS with configurable values
 - export to ODS/CSV/TXT
+- move categories in settings
 - GUI
+- logging into file 
 - implement "real" machine learning
 - parsing rules configurable
 - auto typing linting
