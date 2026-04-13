@@ -20,7 +20,7 @@ class VobaTransformer(Transformer):
         assert len(config) == 1
         self.kontonr = config[0]["account"]
         self.name = config[0]["name"]
-        self.description = config[0]["beschreibung"]
+        self.description = config[0]["description"]
 
     def checkFilename(self, filename):
         pattern_1 = (

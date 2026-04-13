@@ -4,7 +4,7 @@ from app.model.item import AccountItem
 from app.model.rule import Rule
 
 
-def assign(categories, rules: list[Rule], input_data: Account):
+def assign(rules: list[Rule], input_data: Account):
     c = 1
     for item in input_data.items:
         for rule in rules:

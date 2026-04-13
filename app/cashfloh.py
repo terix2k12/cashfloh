@@ -6,6 +6,8 @@ from app.core.logic import assign
 from app.core.rule_service import RulesService
 from app.core.settings import SettingsService
 from app.core.writer import saveJson, struc2csv
+from app.model.account import Account
+from app.model.categories import MISSING
 from app.transformers.transformer_dkb import DkbTransformer
 from app.transformers.transformer_voba import VobaTransformer
 
@@ -16,8 +18,34 @@ def transform(transformer, categories, rules, f, path):
     # print(text)
     data = transformer.txt2struc(text)
     data.verifystruc()
-    assign(categories, rules, data)
+    assign(rules, data)
+    interactive(categories, data)
     return data
+
+def interactive(categories, data: Account):
+    for item in data.items:
+
+
+        if item.main_category == MISSING:
+            cats = []
+            for value in categories.main_categories.values():
+                cats.append(value.name)
+            print(f"Main is missing, assign one of {",".join(cats)}")
+            item.printItem( 0)
+            response = input("Enter to continue...")
+            print(f"Assinging {response}")
+            item.main_category = response
+
+        if item.sub_category == MISSING:
+            subs = []
+            for value in categories.sub_categories.values():
+                subs.append(value.name)
+
+            print(f"Sub is missing, assign one of {",".join(subs)}")
+            item.printItem(0)
+            response = input("Enter to continue...")
+            print(f"Assinging {response}")
+            item.sub_category = response
 
 def handleFile():
     # TODO

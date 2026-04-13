@@ -3,7 +3,7 @@ from app.model.categories import Categories, MainCategory, SubCategory
 
 class CategoryService:
 
-    def fromText(self, text: str):
+    def fromText(self, text: str) -> Categories:
         cat = Categories()
         for line in text.splitlines():
             if line.startswith("#"):
@@ -21,6 +21,6 @@ class CategoryService:
                 cat.sub_categories[sub_id] = SubCategory(sub_id, name, cat_id)
         return cat
 
-    def fromFile(self, path: str):
+    def fromFile(self, path: str) -> Categories:
         with open(path, "r") as file:
             return self.fromText(file.read())
