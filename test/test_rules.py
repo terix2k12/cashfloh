@@ -1,5 +1,6 @@
+from app.rules.rule_service import RulesService
+
 from app.rules.categories import CategoryService
-from app.rules.rules import RulesService
 
 
 def test_load_default_rules():

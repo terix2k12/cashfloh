@@ -1,6 +1,7 @@
-from app.core.data import Account, AccountItem
-from app.rules.categories import MISSING
-from app.rules.rules import Rule
+from app.model.account import Account
+from app.model.categories import MISSING
+from app.model.item import AccountItem
+from app.model.rule import Rule
 
 
 def assign(categories, rules: list[Rule], input_data: Account):

@@ -1,9 +1,10 @@
 import re
 from typing import List
 
-from app.core.data import Account, AccountItem
 from app.core.settings import TransformerSettings
-from app.rules.categories import MISSING
+from app.model.account import Account
+from app.model.categories import MISSING
+from app.model.item import AccountItem
 from app.transformers.transformer import Transformer
 
 
@@ -85,8 +86,8 @@ class DkbTransformer(Transformer):
                     debitor=debitor,
                     summary=summary1,
                     # details= summary2, # TODO
-                    main=main,
-                    sub=sub,
+                    main_category=main,
+                    sub_category=sub,
                     value=value,
                     debit=debit,
                     short=summary3,

@@ -1,7 +1,7 @@
 import dataclasses
 import json
 
-from app.core.data import Account
+from app.model.account import Account
 
 
 def struc2csv(csv_path, data: Account):

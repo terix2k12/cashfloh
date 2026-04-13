@@ -1,11 +1,11 @@
 # import logging # TODO
 import os
 
+from app.core.category_service import CategoryService
 from app.core.logic import assign
+from app.core.rule_service import RulesService
 from app.core.settings import SettingsService
 from app.core.writer import saveJson, struc2csv
-from app.rules.categories import CategoryService
-from app.rules.rules import RulesService
 from app.transformers.transformer_dkb import DkbTransformer
 from app.transformers.transformer_voba import VobaTransformer
 

@@ -1,13 +1,4 @@
-import dataclasses
-
-
-@dataclasses.dataclass
-class Rule:
-    debitor_keyword: str
-    summary_keyword: str
-    details_keyword: str
-    short_keyword: str
-    action: str
+from app.model.rule import Rule
 
 
 class RulesService:
