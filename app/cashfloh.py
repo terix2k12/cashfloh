@@ -25,16 +25,16 @@ def transform(transformer, categories, rules, f, path):
 def interactive(categories, data: Account):
     for item in data.items:
 
-
         if item.main_category == MISSING:
             cats = []
             for value in categories.main_categories.values():
                 cats.append(value.name)
             print(f"Main is missing, assign one of {",".join(cats)}")
-            item.printItem( 0)
+            item.printItem(0)
             response = input("Enter to continue...")
-            print(f"Assinging {response}")
-            item.main_category = response
+            if len(response):
+                print(f"Assinging {response}")
+                item.main_category = response
 
         if item.sub_category == MISSING:
             subs = []
@@ -44,8 +44,9 @@ def interactive(categories, data: Account):
             print(f"Sub is missing, assign one of {",".join(subs)}")
             item.printItem(0)
             response = input("Enter to continue...")
-            print(f"Assinging {response}")
-            item.sub_category = response
+            if len(response):
+                print(f"Assinging {response}")
+                item.sub_category = response
 
 def handleFile():
     # TODO
