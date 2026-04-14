@@ -8,18 +8,18 @@ def assign(rules: list[Rule], input_data: Account):
     c = 1
     for item in input_data.items:
         for rule in rules:
-            if rule.debitor_keyword is not "":
-                if rule.debitor_keyword in item.debitor:
+            if rule is not "":
+                if rule.condition in item.debitor:
                     applyRule(item, rule)
-            if rule.short_keyword is not "":
+            if rule.condition is not "":
                 for text in item.texts:
-                    if rule.short_keyword in text:
+                    if rule.condition in text:
                         applyRule(item, rule)
         c += 1
     return input_data
 
 
-def applyRule(item: AccountItem, rule):
+def applyRule(item: AccountItem, rule: Rule):
     if rule.action.startswith('ASSIGN'):
         m = rule.action.split(".")[1]
         s = rule.action.split(".")[2]

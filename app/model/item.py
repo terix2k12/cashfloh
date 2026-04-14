@@ -1,17 +1,19 @@
 import dataclasses
 
+from app.model.categories import MainCategory, SubCategory
+
 
 @dataclasses.dataclass
 class AccountItem:
     date: str
     debitor: str
     debit: str
-    main_category: int
-    sub_category: int
     value: float
     texts: list[str]
     pn: int
     pn_text: str
+    main_category: MainCategory | None = None
+    sub_category: SubCategory | None = None
 
     def printItem(self, c):
         #main = str(self.main_category).split(".")[1].ljust(12, " ")
