@@ -57,8 +57,10 @@ def interactive(categories: list[MainCategory], data: Account):
                             break
 
                     if cy:
-                        print(f"Assigned {cx.name} {cy.name}")
                         item.sub_category = cy
+
+                    response = input(f"Enter the shorthand description of the {cx.name} {cy.name} item:")
+                    item.description = response
 
 
 def main(settings_path, inputpath):

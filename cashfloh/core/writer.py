@@ -2,6 +2,7 @@ import dataclasses
 import json
 
 from cashfloh.model.account import Account
+from cashfloh.model.item import EMPTY
 
 
 def struc2csv(csv_path, data: Account):
@@ -41,8 +42,12 @@ def struc2csv(csv_path, data: Account):
                 # TODO , vs . make locale configurable
 
             saldo = "Haben" if item.debit == "H" else "Soll"
-            debitor = str(item.debitor).ljust(60, ' ')
-            details = str("/".join(item.texts)).ljust(60, ' ').strip()
+
+            if item.description == EMPTY:
+                debitor = str(item.debitor).ljust(60, ' ')
+                details = (debitor + " " + str("/".join(item.texts))).ljust(60, ' ').strip()
+            else:
+                details = item.description.ljust(60, ' ').strip()
             sort = f"{auszug}/{c:03d}"
 
             csvfile.write(
