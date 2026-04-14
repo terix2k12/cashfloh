@@ -23,5 +23,5 @@ class Settings:
 class SettingsService:
 
     def fromFile(self, path: str) -> Settings:
-        with open(path, "r") as file:
+        with open(path + ".settings.json", "r") as file:
             return Settings.from_json(file.read())
