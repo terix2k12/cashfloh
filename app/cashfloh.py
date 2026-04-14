@@ -61,16 +61,6 @@ def interactive(categories: list[MainCategory], data: Account):
                         item.sub_category = cy
 
 
-def handleFile():
-    # TODO
-    pass
-
-
-def handleFolder():
-    # TODO
-    pass
-
-
 def main(settings_path, inputpath):
     # TODO verify? rules = RulesService().fromFile(rules_path)
 

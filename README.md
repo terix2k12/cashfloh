@@ -35,16 +35,18 @@ cashfloh_venv/bin/uv run flake8 app
 ```
 
 # TODOS
-- interactive correction 
-- apply for dkb too
-- Replace Category/Subcategory ENUMS with configurable values
+- - add/calc custom desctiption of item
+- __main__ rename
+- dont rewrite if already present (except force flag)
+- verify rules
+- verify categories
+- locale in writer
 - export to ODS/CSV/TXT
-- move categories in settings
-- GUI
-- logging into file 
-- implement "real" machine learning
+- remove wild venv from readme
+- logging into file (settings)
 - parsing rules configurable
 - auto typing linting
 - unittests
-- __main__ rename
-- switch to pydantic because it can handle nested json import
+- improve rules
+- implement "real" machine learning
+- GUI
