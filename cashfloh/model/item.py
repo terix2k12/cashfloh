@@ -18,8 +18,8 @@ class AccountItem:
     sub_category: SubCategory | None = None
 
     def printItem(self, c):
-        main = str(self.main_category).split(".")[1].ljust(12, " ")
-        sub = str(self.sub_category).split(".")[1].ljust(12, " ")
+        main = str(self.main_category).ljust(12, " ")
+        sub = str(self.sub_category).ljust(12, " ")
 
         print(f" {str(c).rjust(3, " ")}: {self.date}              {main} {sub}")
         print(f"                          <{self.debit.ljust(60, ' ')}>  ")
