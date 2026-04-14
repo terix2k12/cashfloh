@@ -10,10 +10,17 @@ from app.transformers.transformer import Transformer
 
 class DkbTransformer(Transformer):
 
-    name: str = "DkbTransformer"
+    type: str = "DkbTransformer"
+    name: str
+    kontonr: str
+    description: str
 
     def __init__(self, settings: List[TransformerSettings]):
-        pass
+        config = list(filter(lambda p: p["type"] == self.type, settings))
+        assert len(config) == 1
+        self.kontonr = config[0]["account"]
+        self.name = config[0]["name"]
+        self.description = config[0]["description"]
 
     def checkFilename(self, filename) -> bool:
         pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
@@ -80,18 +87,18 @@ class DkbTransformer(Transformer):
                 if value < 0:
                     value *= -1
 
+                texts = [summary1, summary2, summary3]
+
                 item = AccountItem(
                     date=day,
-                    ktype=k_type,
+                    pn_text=k_type,
                     debitor=debitor,
-                    summary=summary1,
-                    # details= summary2, # TODO
+                    texts=texts,
                     main_category=main,
                     sub_category=sub,
                     value=value,
                     debit=debit,
-                    short=summary3,
-                    details=summary3
+                    pn = 0
                 )
                 data.append(item)
 
@@ -110,8 +117,11 @@ class DkbTransformer(Transformer):
                 summary3 = text[i]
 
         return Account(
-            konto= "DKB Konto", # TODO flex
-            kontoauszug=konto,
+            type = self.type,
+            konto=self.name,
+            description = self.description,
+            account=self.kontonr,
+            auszug=konto,
             startSaldo=start,
             endSaldo=end,
             items=data,

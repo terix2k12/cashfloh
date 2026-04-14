@@ -42,7 +42,7 @@ def struc2csv(csv_path, data: Account):
 
             saldo = "Haben" if item.debit == "H" else "Soll"
             debitor = str(item.debitor).ljust(60, ' ')
-            details = str(";".join(item.texts)).ljust(60, ' ').strip()
+            details = str("/".join(item.texts)).ljust(60, ' ').strip()
             sort = f"{auszug}/{c:03d}"
 
             csvfile.write(
