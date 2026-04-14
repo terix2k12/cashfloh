@@ -27,26 +27,39 @@ def interactive(categories: list[MainCategory], data: Account):
 
         if item.main_category == MISSING:
             cats = []
-            for value in categories.main_categories.values():
-                cats.append(value.name)
-            print(f"Main is missing, assign one of {",".join(cats)}")
-            item.printItem(0)
-            response = input("Enter to continue...")
-            if len(response):
-                print(f"Assinging {response}")
-                item.main_category = response
+            for value in categories:
+                cats.append(f"{value.name}({value.hotkey})")
 
-        if item.sub_category == MISSING:
-            subs = []
-            for value in categories.sub_categories.values():
-                subs.append(value.name)
-
-            print(f"Sub is missing, assign one of {",".join(subs)}")
             item.printItem(0)
-            response = input("Enter to continue...")
-            if len(response):
-                print(f"Assinging {response}")
-                item.sub_category = response
+            cx: MainCategory | None = None
+            while cx is None:
+                response = input(f"Category is missing, assign one of: {", ".join(cats)}")
+                if len(response):
+                    cx = next(filter(lambda c: c.hotkey == response, categories), None)
+                else:
+                    break
+
+            if cx:
+                item.main_category = cx
+
+                if item.sub_category == MISSING:
+
+                    subs = []
+                    for value in cx.sub_categories:
+                        subs.append(f"{value.name}({value.hotkey})")
+
+                    cy: SubCategory | None = None
+                    while cy is None:
+                        response = input(f"Subcategory is missing, assign one of: {", ".join(subs)}")
+                        if len(response):
+                            cy = next(filter(lambda c: c.hotkey == response, cx.sub_categories), None)
+                        else:
+                            break
+
+                    if cy:
+                        print(f"Assigned {cx.name} {cy.name}")
+                        item.sub_category = cy
+
 
 def handleFile():
     # TODO
