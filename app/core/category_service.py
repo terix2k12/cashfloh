@@ -14,11 +14,11 @@ class CategoryService:
             sub_id = int(csv[1])
             name = csv[2]
             if sub_id == 0:
-                cat.main_categories[cat_id] = MainCategory(cat_id, name)
+                cat.main_categories[cat_id] = MainCategory(cat_id, name, "", [])
                 assert cat_id > 0
             else:
                 assert cat_id in cat.main_categories
-                cat.sub_categories[sub_id] = SubCategory(sub_id, name, cat_id)
+                cat.sub_categories[sub_id] = SubCategory(sub_id, name, "", cat_id)
         return cat
 
     def fromFile(self, path: str) -> Categories:

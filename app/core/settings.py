@@ -1,7 +1,8 @@
 import dataclasses
-import json
-from typing import List
 
+from dataclasses_json import dataclass_json
+
+from app.model.categories import MainCategory
 from app.model.rule import Rule2
 
 
@@ -12,14 +13,17 @@ class TransformerSettings:
     description: str
     name: str
 
+@dataclass_json
 @dataclasses.dataclass
 class Settings:
-    transformers: List[TransformerSettings]
-    rules: List[Rule2]
+    main_categories: list[MainCategory]
+    transformers: list[TransformerSettings]
+    rules: list[Rule2]
 
 class SettingsService:
 
     def fromFile(self, path: str) -> Settings:
         with open(path, "r") as file:
-            json_object = json.load(file)
-            return Settings(**json_object)
+            return Settings.from_json(file.read())
+            #json_object = json.load(file)
+            #return Settings(**json_object)

@@ -16,11 +16,11 @@ class DkbTransformer(Transformer):
     description: str
 
     def __init__(self, settings: List[TransformerSettings]):
-        config = list(filter(lambda p: p["type"] == self.type, settings))
+        config = list(filter(lambda p: p.type == self.type, settings))
         assert len(config) == 1
-        self.kontonr = config[0]["account"]
-        self.name = config[0]["name"]
-        self.description = config[0]["description"]
+        self.kontonr = config[0].account
+        self.name = config[0].name
+        self.description = config[0].description
 
     def checkFilename(self, filename) -> bool:
         pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
