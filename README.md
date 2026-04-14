@@ -2,9 +2,15 @@
 
 A processing tool for accounting data of german finance institutions.
 
+## Execution
+
+```sh
+python3 -m cashfloh --profile default /path/to/input/files/
+```
+
 ## Development
 
-### Setup 
+### Setup
 
 Create a local virtual environment (venv), then install `uv`.
 
@@ -31,18 +37,18 @@ cashfloh_venv/bin/uv run pytest
 
 ```sh
 cashfloh_venv/bin/uv run black .
-cashfloh_venv/bin/uv run flake8 app
+cashfloh_venv/bin/uv run flake8 cashfloh
 ```
 
 # TODOS
-- - add/calc custom desctiption of item
-- __main__ rename
+- mulitple actions in one rule
 - dont rewrite if already present (except force flag)
 - verify rules
 - verify categories
 - locale in writer
-- export to ODS/CSV/TXT
+- handle files and folders
 - remove wild venv from readme
+- interactive rule creation
 - logging into file (settings)
 - parsing rules configurable
 - auto typing linting
