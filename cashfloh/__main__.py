@@ -1,6 +1,6 @@
 import argparse
 
-from app.cashfloh import main
+from cashfloh.core.app import main
 
 
 def parse_args():

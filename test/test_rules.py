@@ -1,6 +1,5 @@
-from app.rules.rule_service import RulesService
-
-from app.rules.categories import CategoryService
+from cashfloh.rules.categories import CategoryService
+from cashfloh.rules.rule_service import RulesService
 
 
 def test_load_default_rules():

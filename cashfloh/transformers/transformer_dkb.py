@@ -1,10 +1,10 @@
 import re
 
-from app.core.settings import TransformerSettings
-from app.model.account import Account
-from app.model.categories import MISSING
-from app.model.item import AccountItem
-from app.transformers.transformer import Transformer
+from cashfloh.core.settings import TransformerSettings
+from cashfloh.model.account import Account
+from cashfloh.model.categories import MISSING
+from cashfloh.model.item import AccountItem
+from cashfloh.transformers.transformer import Transformer
 
 
 class DkbTransformer(Transformer):

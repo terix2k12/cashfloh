@@ -1,8 +1,8 @@
-from app.rules.rule_service import RulesService
+from cashfloh.core.data import AccountItem, Account
+from cashfloh.rules.categories import CategoryService
+from cashfloh.rules.rule_service import RulesService
 
-from app.core.data import AccountItem, Account
-from app.core.logic import assign
-from app.rules.categories import CategoryService
+from cashfloh.core.logic import assign
 
 
 def test_core():

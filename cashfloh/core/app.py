@@ -1,14 +1,14 @@
 # import logging # TODO
 import os
 
-from app.core.category_service import CategoryService
-from app.core.logic import assign
-from app.core.settings import SettingsService
-from app.core.writer import saveJson, struc2csv
-from app.model.account import Account
-from app.model.categories import MISSING, MainCategory, SubCategory
-from app.transformers.transformer_dkb import DkbTransformer
-from app.transformers.transformer_voba import VobaTransformer
+from cashfloh.core.category_service import CategoryService
+from cashfloh.core.logic import assign
+from cashfloh.core.settings import SettingsService
+from cashfloh.core.writer import saveJson, struc2csv
+from cashfloh.model.account import Account
+from cashfloh.model.categories import MISSING, MainCategory, SubCategory
+from cashfloh.transformers.transformer_dkb import DkbTransformer
+from cashfloh.transformers.transformer_voba import VobaTransformer
 
 
 def transform(transformer, categories, rules, f, path):

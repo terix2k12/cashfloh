@@ -1,6 +1,6 @@
 import dataclasses
 
-from app.model.categories import MainCategory, SubCategory
+from cashfloh.model.categories import MainCategory, SubCategory
 
 
 @dataclasses.dataclass

@@ -1,7 +1,7 @@
-from app.model.account import Account
-from app.model.categories import MISSING
-from app.model.item import AccountItem
-from app.model.rule import Rule
+from cashfloh.model.account import Account
+from cashfloh.model.categories import MISSING
+from cashfloh.model.item import AccountItem
+from cashfloh.model.rule import Rule
 
 
 def assign(rules: list[Rule], input_data: Account):

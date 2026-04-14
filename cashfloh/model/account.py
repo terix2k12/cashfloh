@@ -1,6 +1,6 @@
 import dataclasses
 
-from app.model.item import AccountItem
+from cashfloh.model.item import AccountItem
 
 
 @dataclasses.dataclass

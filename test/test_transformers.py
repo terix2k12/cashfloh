@@ -1,5 +1,5 @@
-from app.transformers.transformer_dkb import DkbTransformer
-from app.transformers.transformer_voba import VobaTransformer
+from cashfloh.transformers.transformer_dkb import DkbTransformer
+from cashfloh.transformers.transformer_voba import VobaTransformer
 
 
 def test_dkb_filename_matchers():

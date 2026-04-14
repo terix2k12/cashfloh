@@ -1,4 +1,4 @@
-from app.model.rule import Rule
+from cashfloh.model.rule import Rule
 
 
 class RulesService:

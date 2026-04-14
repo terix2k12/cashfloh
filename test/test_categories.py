@@ -1,4 +1,4 @@
-from app.rules.categories import CategoryService
+from cashfloh.rules.categories import CategoryService
 
 
 def test_load_default_categories():

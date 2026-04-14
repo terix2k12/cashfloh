@@ -1,7 +1,7 @@
 import dataclasses
 import json
 
-from app.model.account import Account
+from cashfloh.model.account import Account
 
 
 def struc2csv(csv_path, data: Account):

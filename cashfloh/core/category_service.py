@@ -1,4 +1,4 @@
-from app.core.settings import Settings
+from cashfloh.core.settings import Settings
 
 
 class CategoryService:

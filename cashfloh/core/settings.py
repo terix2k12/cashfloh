@@ -2,8 +2,8 @@ import dataclasses
 
 from dataclasses_json import dataclass_json
 
-from app.model.categories import MainCategory
-from app.model.rule import Rule
+from cashfloh.model.categories import MainCategory
+from cashfloh.model.rule import Rule
 
 
 @dataclasses.dataclass
