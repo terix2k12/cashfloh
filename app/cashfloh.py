@@ -66,7 +66,10 @@ def main(settings_path, inputpath):
 
     settings = SettingsService().fromFile(settings_path)
     CategoryService().verify(settings.main_categories)
+
+    # TODO fix dynamic Transformers
     transformers = [
+        DkbTransformer(settings.transformers),
         DkbTransformer(settings.transformers),
         VobaTransformer(settings.transformers)
     ]

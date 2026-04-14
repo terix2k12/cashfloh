@@ -1,5 +1,4 @@
 import re
-from typing import List
 
 from app.core.settings import TransformerSettings
 from app.model.account import Account
@@ -15,19 +14,19 @@ class DkbTransformer(Transformer):
     kontonr: str
     description: str
 
-    def __init__(self, settings: List[TransformerSettings]):
+    def __init__(self, settings: list[TransformerSettings]):
         config = list(filter(lambda p: p.type == self.type, settings))
-        assert len(config) == 1
         self.kontonr = config[0].account
         self.name = config[0].name
         self.description = config[0].description
+        settings.remove(config[0])
 
     def checkFilename(self, filename) -> bool:
-        pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
-        pattern2 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{2}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_\d{10}\.pdf$"
-        isP1 = re.match(pattern1, filename) is not None
-        isP2 = re.match(pattern2, filename) is not None
-        return isP1 or isP2
+        pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_" + str(self.kontonr) + r"\.pdf$"
+        pattern2 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{2}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_" + str(self.kontonr) + r"\.pdf$"
+        is_pattern1 = re.match(pattern1, filename) is not None
+        is_pattern2 = re.match(pattern2, filename) is not None
+        return is_pattern1 or is_pattern2
 
     def txt2struc(self, txt) -> Account:
         text = txt.splitlines()
