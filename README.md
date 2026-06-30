@@ -44,8 +44,7 @@ cashfloh_venv/bin/uv run flake8 cashfloh
 - categorie ids entfernen
 - proper description in csv
 - verify hotkeys of categories
-- umlauts in json
-- remove empty strings fromjson.txt list
+- remove empty strings fromjson.txt list, vobatransofrmer
 - check condition in debitor?
 - mulitple actions in one rule
 - multiple conditions for one rule

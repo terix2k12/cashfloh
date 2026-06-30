@@ -60,5 +60,5 @@ def struc2csv(csv_path, data: Account):
 
 def saveJson(json_path, data: Account):
     with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(dataclasses.asdict(data), f, indent=4)
+        json.dump(dataclasses.asdict(data), f, indent=4, ensure_ascii=False)
     print("Written JSON file")
