@@ -20,6 +20,7 @@ class DkbTransformer(Transformer):
         self.name = config[0].name
         self.description = config[0].description
         settings.remove(config[0])
+        # TODO Fix side effect
 
     def checkFilename(self, filename) -> bool:
         pattern1 = r"^\d{4}-\d{2}-\d{2}_Kontoauszug_\d{1}_\d{4}_vom_\d{2}\.\d{2}\.\d{4}_zu_Konto_" + str(self.kontonr) + r"\.pdf$"

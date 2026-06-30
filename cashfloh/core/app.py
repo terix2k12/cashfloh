@@ -73,6 +73,7 @@ def main(settings_path, inputpath):
     transformers = [
         DkbTransformer(settings.transformers),
         DkbTransformer(settings.transformers),
+        DkbTransformer(settings.transformers),
         VobaTransformer(settings.transformers)
     ]
 
