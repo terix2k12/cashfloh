@@ -2,7 +2,6 @@ import re
 
 from cashfloh.core.settings import TransformerSettings
 from cashfloh.model.account import Account
-from cashfloh.model.categories import MISSING
 from cashfloh.model.item import AccountItem
 from cashfloh.transformers.transformer import Transformer
 
@@ -73,9 +72,6 @@ class DkbTransformer(Transformer):
                 split = text[i].split("/")
                 k_type = split[0][10:]
 
-            main = MISSING
-            sub = MISSING
-
             if inState > 0 and text[i].startswith("  "):
                 # print(f"Leaving item {i} {text[i]}")
                 inState = 0
@@ -87,15 +83,18 @@ class DkbTransformer(Transformer):
                 if value < 0:
                     value *= -1
 
-                texts = [summary1, summary2, summary3]
+                texts = []
+                for s in [summary1, summary2, summary3]:
+                    if s is not None and len(s) > 0:
+                        texts.append(s)
 
                 item = AccountItem(
                     date=day,
                     pn_text=k_type,
                     debitor=debitor,
                     texts=texts,
-                    main_category=main,
-                    sub_category=sub,
+                    main_category=None,
+                    sub_category=None,
                     value=value,
                     debit=debit,
                     pn = 0

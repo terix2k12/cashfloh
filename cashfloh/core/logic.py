@@ -5,17 +5,16 @@ from cashfloh.model.rule import Rule
 
 
 def assign(rules: list[Rule], input_data: Account):
-    c = 1
     for item in input_data.items:
         for rule in rules:
-            if rule is not "":
-                if rule.condition in item.debitor:
+            # TODO do verification at startup
+            if rule.condition is None or rule.condition is "":
+                raise Exception("Condition cannot be empty")
+            if rule.condition in item.debitor:
+                applyRule(item, rule)
+            for text in item.texts:
+                if rule.condition in text:
                     applyRule(item, rule)
-            if rule.condition is not "":
-                for text in item.texts:
-                    if rule.condition in text:
-                        applyRule(item, rule)
-        c += 1
     return input_data
 
 
