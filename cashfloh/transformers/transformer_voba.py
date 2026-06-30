@@ -3,7 +3,6 @@ from typing import List
 
 from cashfloh.core.settings import TransformerSettings
 from cashfloh.model.account import Account
-from cashfloh.model.categories import MISSING
 from cashfloh.model.item import AccountItem
 from cashfloh.transformers.transformer import Transformer
 
@@ -80,8 +79,8 @@ class VobaTransformer(Transformer):
                     date=day,
                     debitor=text[i + 1],
                     debit=debit,
-                    main_category=MISSING,
-                    sub_category=MISSING,
+                    main_category=None,
+                    sub_category=None,
                     value=value,
                     texts=texts,
                     pn=pn,

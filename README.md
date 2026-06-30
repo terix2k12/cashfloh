@@ -41,7 +41,7 @@ cashfloh_venv/bin/uv run flake8 cashfloh
 ```
 
 # TODOS
-- categorie ids entfernen
+- logging into file (settings)
 - proper description in csv
 - verify hotkeys of categories
 - remove empty strings fromjson.txt list, vobatransofrmer
@@ -55,7 +55,6 @@ cashfloh_venv/bin/uv run flake8 cashfloh
 - handle files and folders
 - remove wild venv from readme
 - interactive rule creation
-- logging into file (settings)
 - parsing rules configurable
 - auto typing linting
 - unittests

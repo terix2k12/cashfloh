@@ -1,5 +1,4 @@
 from cashfloh.model.account import Account
-from cashfloh.model.categories import MISSING
 from cashfloh.model.item import AccountItem
 from cashfloh.model.rule import Rule
 
@@ -8,7 +7,7 @@ def assign(rules: list[Rule], input_data: Account):
     for item in input_data.items:
         for rule in rules:
             # TODO do verification at startup
-            if rule.condition is None or rule.condition is "":
+            if rule.condition is None or rule.condition == "":
                 raise Exception("Condition cannot be empty")
             if rule.condition in item.debitor:
                 applyRule(item, rule)
@@ -34,7 +33,7 @@ def assignCategories(data):
     for item in data["items"]:
         (main, sub) = extractCategory(item["debitor"], item["summary"])
 
-        if main == MISSING or sub == MISSING:
+        if main == 0 or sub == 0:
             print("Can´t assign category")
     #        printItem(item, c)
 
@@ -57,6 +56,6 @@ def assignCategories(data):
 
 
 def extractCategory(debitor, description):
-    main = MISSING
-    sub = MISSING
+    main = 0
+    sub = 0
     return (main, sub)

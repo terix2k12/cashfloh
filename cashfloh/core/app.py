@@ -6,7 +6,7 @@ from cashfloh.core.logic import assign
 from cashfloh.core.settings import SettingsService
 from cashfloh.core.writer import saveJson, struc2csv
 from cashfloh.model.account import Account
-from cashfloh.model.categories import MISSING, MainCategory, SubCategory
+from cashfloh.model.categories import MainCategory, SubCategory
 from cashfloh.transformers.transformer_dkb import DkbTransformer
 from cashfloh.transformers.transformer_voba import VobaTransformer
 
@@ -25,7 +25,8 @@ def transform(transformer, categories, rules, f, path):
 def interactive(categories: list[MainCategory], data: Account):
     for item in data.items:
 
-        if item.main_category == MISSING:
+        if item.main_category is None or item.main_category == 0:
+            # TODO remove ==0 compat
             cats = []
             for value in categories:
                 cats.append(f"{value.name}({value.hotkey})")
@@ -42,7 +43,8 @@ def interactive(categories: list[MainCategory], data: Account):
             if cx:
                 item.main_category = cx
 
-                if item.sub_category == MISSING:
+                if item.sub_category is None or item.sub_category == 0:
+                    # TODO remove ==0 compat
 
                     subs = []
                     for value in cx.sub_categories:

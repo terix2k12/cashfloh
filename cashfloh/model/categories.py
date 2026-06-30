@@ -1,7 +1,5 @@
 import dataclasses
 
-MISSING = 0
-
 @dataclasses.dataclass
 class SubCategory:
     name: str
