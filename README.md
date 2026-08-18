@@ -41,12 +41,11 @@ cashfloh_venv/bin/uv run flake8 cashfloh
 ```
 
 # TODOS
-- logging into file (settings)
 - proper description in csv
 - verify hotkeys of categories
 - remove empty strings fromjson.txt list, vobatransofrmer
 - check condition in debitor?
-- mulitple actions in one rule
+- multiple actions in one rule
 - multiple conditions for one rule
 - dont rewrite if already present (except force flag)
 - verify rules
@@ -57,7 +56,9 @@ cashfloh_venv/bin/uv run flake8 cashfloh
 - interactive rule creation
 - parsing rules configurable
 - auto typing linting
-- unittests
 - improve rules
-- implement "real" machine learning
-- GUI
+- add project logo/image
+- [#1] implement "real" machine learning
+- [#2] GUI
+- [#3] unittests
+- [#4] logging into file (settings)
