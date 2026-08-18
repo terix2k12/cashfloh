@@ -3,12 +3,13 @@ from cashfloh.model.item import AccountItem
 from cashfloh.model.rule import Rule
 
 
-def assign(rules: list[Rule], input_data: Account):
+def assign(transformer, rules: list[Rule], input_data: Account):
     for item in input_data.items:
         for rule in rules:
-            # TODO do verification at startup
-            if rule.condition is None or rule.condition == "":
-                raise Exception("Condition cannot be empty")
+            if rule.transformer:
+                if not transformer.id == rule.transformer:
+                    # TODO Logging?
+                    continue
             if rule.condition in item.debitor:
                 applyRule(item, rule)
             for text in item.texts:

@@ -17,7 +17,7 @@ def transform(transformer, categories, rules, f, path):
     # print(text)
     data = transformer.txt2struc(text)
     data.verifystruc()
-    assign(rules, data)
+    assign(transformer, rules, data)
     interactive(categories, data)
     return data
 
