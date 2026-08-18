@@ -5,10 +5,10 @@ description = "A processing tool for accounting information of german finance in
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "black>=25.1.0",
-    "cryptography>=45.0.7",
+    "black>=26.5.1",
+    "cryptography>=50.0.0",
     "dataclasses-json>=0.6.7",
     "flake8>=7.3.0",
-    "pypdf>=6.0.0",
-    "pytest>=8.4.2",
+    "pypdf>=6.16.1",
+    "pytest>=9.1.1",
 ]
