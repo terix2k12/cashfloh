@@ -3,10 +3,16 @@ from cashfloh.model.rule import Rule
 
 class RulesService:
 
-    def validate(self, categories, rules) -> bool:
-        main_categories = [cat.name for cat in categories.main_categories.values()]
-        sub_categories = [cat.name for cat in categories.sub_categories.values()]
+    def validate(self, transformers, categories, rules) -> bool:
+        main_categories = [cat.name for cat in categories]
+        sub_categories = []
+        for cat in categories:
+            for sub_cat in cat.sub_categories:
+                sub_categories.append(sub_cat.name)
+        transformer_ids = [t.id for t in transformers]
         for rule in rules:
+            if rule.condition is None or rule.condition == "":
+                raise Exception("Condition cannot be empty")
             if rule.action.startswith("ASSIGN"):
                 main_category = rule.action.split(".")[1]
                 sub_category = rule.action.split(".")[2]
@@ -15,6 +21,9 @@ class RulesService:
                     or sub_category not in sub_categories
                 ):
                     return False
+            if rule.transformer:
+                if rule.transformer not in transformer_ids:
+                    raise Exception("Transformer must be one of {}".format(transformers))
         return True
 
     def fromText(self, text: str):

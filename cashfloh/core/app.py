@@ -3,6 +3,7 @@ import os
 
 from cashfloh.core.category_service import CategoryService
 from cashfloh.core.logic import assign
+from cashfloh.core.rule_service import RulesService
 from cashfloh.core.settings import SettingsService
 from cashfloh.core.writer import saveJson, struc2csv
 from cashfloh.model.account import Account
@@ -66,10 +67,10 @@ def interactive(categories: list[MainCategory], data: Account):
 
 
 def main(settings_path, inputpath):
-    # TODO verify? rules = RulesService().fromFile(rules_path)
-
     settings = SettingsService().fromFile(settings_path)
+
     CategoryService().verify(settings.main_categories)
+    RulesService().validate(settings.transformers, settings.main_categories, settings.rules)
 
     # TODO fix dynamic Transformers
     transformers = [
