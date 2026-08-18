@@ -1,6 +1,7 @@
 # Cash-Floh App
 
 A processing tool for accounting data of german finance institutions.
+Automatically transforms PDF into structured data based on a configurable rule set.
 
 ## Execution
 
@@ -48,22 +49,32 @@ uv run flake8 cashfloh
 ```
 
 # TODOS
-- proper description in csv
+
+## Bugs
+- csv writer robust against semicolon in description
+
+## Backlog
+- fix issues in TODO comments
+- remove commentend codeparts
+- use regex in describe action
 - verify hotkeys of categories
+- verify categories
+- proper description in csv -> add a rule type for it
 - remove empty strings fromjson.txt list, vobatransofrmer
+- add commit hash in json export
 - check condition in debitor?
 - multiple actions in one rule
 - multiple conditions for one rule
 - dont rewrite if already present (except force flag)
-- verify rules
-- verify categories
 - locale in writer
 - handle files and folders
 - interactive rule creation
 - parsing rules configurable
 - auto typing linting
-- improve rules
+- improve rules (and/or)
 - add project logo/image
+
+## Issues
 - [#1] implement "real" machine learning
 - [#2] GUI
 - [#3] unittests
