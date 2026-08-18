@@ -13,6 +13,7 @@ class VobaTransformer(Transformer):
     name: str
     kontonr: str
     description: str
+    id: str
 
     def __init__(self, settings: List[TransformerSettings]):
         config = list(filter(lambda p: p.type == self.type, settings))
@@ -20,6 +21,7 @@ class VobaTransformer(Transformer):
         self.kontonr = config[0].account
         self.name = config[0].name
         self.description = config[0].description
+        self.id = config[0].id
 
     def checkFilename(self, filename):
         pattern_1 = (

@@ -12,6 +12,7 @@ class TransformerSettings:
     account: int
     description: str
     name: str
+    id: str
 
 @dataclass_json
 @dataclasses.dataclass
